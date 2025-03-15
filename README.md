@@ -29,67 +29,46 @@ master memanggil layout head, nav, side, footer,  menggunakan `@include('layout.
 master menerima code dari dashboard melalui `@yield('nama_yield')`, dashboard memberikan code dengan `@section('nama_yield')` ditutup dengan `@endsection('nama_yield')`  
 ```blade
 # Master
-html
-- nav
--- @yiled('title')
--- include('layouts.navbar')
--body
--- @include ('navbar) 
--- @include ('sidebar)
--- @yield ('content)
--- include('layouts.script')
--- @yield ('content)
-
-# dashboard
-- @extends('layouts.master')
-- @section('title', 'Dashboard')
-- @section('head') <link/> @endsection
-- @section('content') <section/> @endsection
-- @section('script') <script/> @endsection
-```
-```blade
-# master.blade.php
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-    <title>@yield('title') - nama project</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    @yield('head')
-
-  </head>
-
-  <body>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        @yield('title')
+    </title>
     @include('layouts.navbar')
+</head>
+<body>
+    @include('navbar') 
+    @include('sidebar')
+
     @yield('content')
-    @include('layouts.footer')
-  
+    
+    @include('layouts.script')
+    
     @yield('script')
-  </body>
+</body>
 </html>
 ```
-
 ```blade
 # dashboard
-@extends('layouts.master')
+@extends('master')
 
-@section('title', 'Dashboard')
-
-@section('head')
-   <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}">
+@section('title')
+	<p>Dashboar</p>
 @endsection
 
+
 @section('content')
-  <section>
+<div class="p-6">
     ...
-  </section>
+</div>
 @endsection
 
 
 @section('script')
-  <script src="{{ asset('js/custom.js') }}"></script>
 @endsection
+
 ```
