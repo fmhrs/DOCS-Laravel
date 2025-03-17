@@ -27,7 +27,7 @@ Route::get("/dashboard", [DashboardController::class, 'index']);
 ```
 
 **fitur name pada routing**
-```
+```blade
 <?php
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +43,7 @@ Route::get("/admin/dashboard", function(){ return view ('admin.dashboard')})->na
 **middleware**
 membuat halaman dapat diakses hanya oleh orang yang telah login, jika belum login maka diarahkan ke halaman login
 NB: redirect ke login hanya berhasil apabila telah membuat `->name('login')` pada salah satu route.
-```
+```blade
 <?php
 use Illuminate\Support\Facades\Route;
 
@@ -55,7 +55,7 @@ untuk cara login logout dapat lihat di dokumentasi [Manually Authenticating User
 
 **prefix**
 ```blade
-
+<?php
 Route::middleware(['auth'])->prefix('admin/')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/user')->name('admin.user');
@@ -70,6 +70,7 @@ on progress
 
 **resource** on progress
 ```
+<?php
 Route::resources([
     'photos' => PhotoController::class,
     'posts' => PostController::class,
