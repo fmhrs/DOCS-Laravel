@@ -96,6 +96,7 @@ public function index(Request $request){
 ```blade
 {{ $products->onEachSide(2)->links() }}
 ```
+
 ![Pasted image 20250317232949](https://github.com/user-attachments/assets/e059fc0a-003b-40d5-abdc-3e539f20ca44)
 
 ## Customize Data Table
@@ -106,7 +107,7 @@ link: [Customizing the Pagination View](https://laravel.com/docs/12.x/pagination
 php artisan vendor:publish --tag=laravel-pagination
 ```
 nanti akan muncul beberapa file di `resource/views/vendor/pagination`  
-![Pasted image 20250317230929](https://github.com/user-attachments/assets/86e44e16-353c-4752-96b1-023bd514311d)  
+![Pasted image 20250317230929](https://github.com/user-attachments/assets/86e44e16-353c-4752-96b1-023bd514311d)    
 
 jika menggunakan tailwind edit bagian file yang memiliki nama tailwind. ini adalah settingan saya `tailwind.blade.php` menggunakan daisyui. 
 ```blade
@@ -114,25 +115,23 @@ jika menggunakan tailwind edit bagian file yang memiliki nama tailwind. ini adal
   <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
     <div class="flex justify-between flex-1 sm:hidden">
       @if ($paginator->onFirstPage())
-        <span
-          class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md dark:text-gray-600 dark:bg-gray-800 dark:border-gray-600">
+        <span class="relative inline-flex items-center px-4 py-2 btn ">
           {!! __('pagination.previous') !!}
         </span>
       @else
         <a href="{{ $paginator->previousPageUrl() }}"
-          class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:focus:border-blue-700 dark:active:bg-gray-700 dark:active:text-gray-300">
+          class="relative inline-flex items-center px-4 py-2 text-sm font-medium btn">
           {!! __('pagination.previous') !!}
         </a>
       @endif
 
       @if ($paginator->hasMorePages())
         <a href="{{ $paginator->nextPageUrl() }}"
-          class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:focus:border-blue-700 dark:active:bg-gray-700 dark:active:text-gray-300">
+          class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium btn">
           {!! __('pagination.next') !!}
         </a>
       @else
-        <span
-          class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md dark:text-gray-600 dark:bg-gray-800 dark:border-gray-600">
+        <span class="relative inline-flex items-center px-4 py-2 ml-3 btn ">
           {!! __('pagination.next') !!}
         </span>
       @endif
@@ -234,4 +233,4 @@ jika menggunakan tailwind edit bagian file yang memiliki nama tailwind. ini adal
 @endif
 ```
 ## Pagination With Livewire
-...
+Jika menggunakan Livewire Pagination maka styling customization nya akan berbeda, lagi tidak dapat menggunakan `/vendor/tailwind`, lalu untuk query link yang menggunakan`{{ $products->appends(request()->query())->links() }}` cukup menggunakan `{{ $products->onEachSide(2)->links() }}` karena variable search dan category di [Livewire Pagination + DaisyUI](Livewire%20Pagination%20+%20DaisyUI.md)
